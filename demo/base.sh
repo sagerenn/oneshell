@@ -1,7 +1,7 @@
 #!/bin/bash
 
 global_setting(){
-
+    local dep
     local deps=( sshpass expect bash )
     for dep in ${deps[@]}
     do

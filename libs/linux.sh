@@ -455,3 +455,37 @@ list_ip_segment(){
     fi
 }
 
+
+loop_list_func(){
+    local count=0
+    local folder=$1
+    loop_list(){
+        local dir=$1
+        local item
+        local i
+        local item_list=(`ls $dir`)
+        for item in ${!item_list[@]}
+        do
+            for((i=1;i<=count;i++))
+            do
+                echo -n "    "
+            done
+
+            echo ${item_list[item]}
+
+            if [[ -d $dir/${item_list[item]} ]] && [[ $(ls $dir/${item_list[item]} | wc -l) -gt 0 ]]
+            then
+                count=$((count+1))
+                loop_list $dir/${item_list[item]}
+            fi
+
+            if [[ $((item+1)) == ${#item_list[@]} ]]
+            then
+                count=$((count-1))
+            fi
+
+        done
+    }
+
+    loop_list $folder
+}

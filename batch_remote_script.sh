@@ -347,7 +347,7 @@ check_variable(){
     fi
 
     if [[ $parallel_no -gt 15 ]]; then
-        echo "The number of thread should not be larger than 20!"
+        echo "The number of thread should not be larger than 15!"
         exit 1
     fi
 
